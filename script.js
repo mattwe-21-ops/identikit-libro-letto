@@ -15,9 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.textContent = i;
         
         btn.addEventListener("click", () => {
-            // Rimuovi selezione precedente
             document.querySelectorAll(".rating-btn").forEach(b => b.classList.remove("selected"));
-            // Applica nuova selezione
             btn.classList.add("selected");
             selectedRating = i;
         });
@@ -33,18 +31,27 @@ document.addEventListener("DOMContentLoaded", () => {
     };
     btnClear.addEventListener("click", clearForm);
 
-    // 3. Esporta in PDF utilizzando html2pdf
+    // 3. Esporta in PDF pulito (nasconde i campi di input e mostra una firma testuale elegante)
     btnPdf.addEventListener("click", () => {
         const element = document.getElementById("printable-area");
         const buttons = document.getElementById("action-buttons");
+        const firmaWebGroup = document.getElementById("firma-web-group");
+        const firmaPdfBlock = document.getElementById("firma-pdf-block");
+        const firmaTestoPdf = document.getElementById("firma-testo-pdf");
         
-        // Nasconde i bottoni temporaneamente per non includerli nel PDF
-        buttons.style.display = "none";
-
+        const firmaValue = document.getElementById("firma").value.trim() || "---";
         const titoloLibro = document.getElementById("titolo").value.trim() || "Libro";
-        
+
+        // Assegna la firma al blocco di testo del PDF
+        firmaTestoPdf.textContent = firmaValue;
+
+        // Modifiche temporanee del layout per ottimizzare la resa visiva nel PDF
+        buttons.style.display = "none";
+        firmaWebGroup.style.display = "none"; // Nasconde la casella di testo vuota/rettangolare
+        firmaPdfBlock.style.display = "block"; // Mostra la riga di firma elegante ed editoriale
+
         const opt = {
-            margin:       10,
+            margin:       15,
             filename:     `Identikit_${titoloLibro.replace(/\s+/g, '_')}.pdf`,
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { scale: 2, useCORS: true },
@@ -52,8 +59,10 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         html2pdf().set(opt).from(element).save().then(() => {
-            // Ripristina la visualizzazione dei bottoni dopo il salvataggio
+            // Ripristina l'interfaccia interattiva sul browser dopo il rendering del PDF
             buttons.style.display = "flex";
+            firmaWebGroup.style.display = "flex";
+            firmaPdfBlock.style.display = "none";
         });
     });
 
@@ -116,7 +125,6 @@ document.addEventListener("DOMContentLoaded", () => {
             </html>
         `;
 
-        // Generazione del blob di download
         const blob = new Blob(['\ufeff' + docxContent], { type: 'application/msword' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");

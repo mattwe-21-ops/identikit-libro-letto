@@ -160,6 +160,18 @@
         .btn-clear {
             background-color: #4a4a4a;
         }
+
+        /* Blocco firma dedicato per il PDF esportato */
+        .pdf-only-signature {
+            display: none;
+            margin-top: 40px;
+            text-align: right;
+            font-style: italic;
+            font-size: 15px;
+            border-top: 1px dashed #cbd5e1;
+            padding-top: 12px;
+            color: #333333;
+        }
     </style>
 </head>
 <body>
@@ -222,9 +234,13 @@
             <textarea id="note"></textarea>
         </div>
 
-        <div class="input-group" style="margin-top: 10px;">
+        <div class="input-group" id="firma-web-group" style="margin-top: 10px;">
             <label for="firma">Identikit compilato da:</label>
             <input type="text" id="firma" placeholder="Inserisci il tuo nome o la tua firma">
+        </div>
+
+        <div class="pdf-only-signature" id="firma-pdf-block">
+            Identikit compilato da: <strong id="firma-testo-pdf"></strong>
         </div>
 
         <div class="buttons-group" id="action-buttons">
