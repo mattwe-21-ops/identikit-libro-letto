@@ -29,18 +29,18 @@ document.addEventListener("DOMContentLoaded", () => {
         selectedRating = null;
     });
 
-    // 3. ESPORTAZIONE DOCX (Word) con Autore e Compilatore accanto a Identikit nel titolo principale
+    // 3. ESPORTAZIONE DOCX (Word) - Genera il file inserendo Autore e Compilatore direttamente accanto a Identikit nel titolo principale
     btnDocx.addEventListener("click", () => {
-        const titolo = document.getElementById("titolo").value || "Senza Titolo";
-        const autore = document.getElementById("autore").value || "Non specificato";
-        const anno = document.getElementById("anno").value || "---";
-        const genere = document.getElementById("genere").value || "---";
+        const titolo = document.getElementById("titolo").value.trim() || "Senza Titolo";
+        const autore = document.getElementById("autore").value.trim() || "Non specificato";
+        const anno = document.getElementById("anno").value.trim() || "---";
+        const genere = document.getElementById("genere").value.trim() || "---";
         const dataLettura = document.getElementById("data-lettura").value || "---";
         const pagine = document.getElementById("pagine").value || "---";
-        const trama = document.getElementById("trama").value || "---";
-        const personaggi = document.getElementById("personaggi").value || "---";
-        const note = document.getElementById("note").value || "---";
-        const firma = document.getElementById("firma").value || "Anonimo";
+        const trama = document.getElementById("trama").value.trim() || "---";
+        const personaggi = document.getElementById("personaggi").value.trim() || "---";
+        const note = document.getElementById("note").value.trim() || "---";
+        const firma = document.getElementById("firma").value.trim() || "Anonimo";
         const valutazione = selectedRating ? `${selectedRating} / 10` : "Non specificata";
 
         const docxContent = `
