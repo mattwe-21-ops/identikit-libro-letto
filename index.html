@@ -33,11 +33,10 @@
 
         .header-title {
             text-align: center;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 700;
             margin-bottom: 30px;
             color: #000000;
-            line-height: 1.4;
         }
 
         form {
@@ -161,24 +160,12 @@
         .btn-clear {
             background-color: #4a4a4a;
         }
-
-        /* Blocco firma in fondo per il PDF */
-        .pdf-only-signature {
-            display: none;
-            margin-top: 40px;
-            text-align: right;
-            font-style: italic;
-            font-size: 14px;
-            border-top: 1px dashed #cbd5e1;
-            padding-top: 12px;
-            color: #333333;
-        }
     </style>
 </head>
 <body>
 
-<div class="container" id="printable-area">
-    <div class="header-title" id="main-title">📚 Identikit Libro Letto</div>
+<div class="container">
+    <div class="header-title">📚 Identikit Libro Letto</div>
     
     <form id="book-form" onsubmit="return false;">
         <div class="grid-2col">
@@ -235,16 +222,12 @@
             <textarea id="note"></textarea>
         </div>
 
-        <div class="input-group" id="firma-web-group" style="margin-top: 10px;">
+        <div class="input-group" style="margin-top: 10px;">
             <label for="firma">Identikit compilato da:</label>
             <input type="text" id="firma" placeholder="Inserisci il tuo nome">
         </div>
 
-        <div class="pdf-only-signature" id="firma-pdf-block">
-            Identikit compilato da: <strong id="firma-testo-pdf"></strong>
-        </div>
-
-        <div class="buttons-group" id="action-buttons">
+        <div class="buttons-group">
             <button type="button" class="btn btn-pdf" id="btn-pdf">Esporta PDF</button>
             <button type="button" class="btn btn-docx" id="btn-docx">Esporta DOCX</button>
             <button type="button" class="btn btn-clear" id="btn-clear">Pulisci</button>
