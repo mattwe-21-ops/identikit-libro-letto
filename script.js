@@ -68,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const trama = document.getElementById("trama").value || "---";
         const personaggi = document.getElementById("personaggi").value || "---";
         const note = document.getElementById("note").value || "---";
+        const firma = document.getElementById("firma").value || "---";
         const valutazione = selectedRating ? `${selectedRating} / 10` : "Non specificata";
 
         // Costruzione del contenuto HTML formattato per Microsoft Word
@@ -83,6 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     .label { font-weight: bold; color: #000000; width: 30%; }
                     .section-title { font-weight: bold; color: #000000; margin-top: 20px; margin-bottom: 5px; border-bottom: 1px solid #cccccc; padding-bottom: 3px; }
                     .text-block { background-color: #f9f9f9; padding: 10px; border-left: 3px solid #cccccc; margin-bottom: 15px; white-space: pre-wrap; }
+                    .footer-signature { margin-top: 40px; text-align: right; font-style: italic; font-size: 12pt; border-top: 1px dashed #cccccc; padding-top: 10px; }
                 </style>
             </head>
             <body>
@@ -106,6 +108,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 <div class="section-title">Note</div>
                 <div class="text-block">${note.replace(/\n/g, '<br>')}</div>
+
+                <div class="footer-signature">
+                    Identikit compilato da: <strong>${firma}</strong>
+                </div>
             </body>
             </html>
         `;
